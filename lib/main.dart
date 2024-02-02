@@ -26,33 +26,40 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Flutter Basics'),
         ),
         body: Center(
-          child: SizedBox(
-            height: double.infinity,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      buttonName = 'Clicked';
-                    });
-                  },
-                  child: Text(buttonName),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      buttonName = 'Click Me';
-                    });
-                  },
-                  child: Text(buttonName),
-                ),
-              ],
-            ),
-          ),
-        ),
+            child: currentIndex == 0
+                ? Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    // color: Colors.amberAccent,
+                    decoration: const FlutterLogoDecoration(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.amber,
+                            foregroundColor: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              buttonName = 'Clicked';
+                            });
+                          },
+                          child: Text(buttonName),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              buttonName = 'Click Me';
+                            });
+                          },
+                          child: Text(buttonName),
+                        ),
+                      ],
+                    ),
+                  )
+                : Image.asset('images/963lmdh.jpg')),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
