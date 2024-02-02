@@ -1,12 +1,21 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  String buttonName = 'Clickie';
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String buttonName = 'Click Me';
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +26,31 @@ class MyApp extends StatelessWidget {
           title: const Text('Flutter Basics'),
         ),
         body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              print('Hello World');
-            },
-            child: Text(buttonName),
+          child: SizedBox(
+            height: double.infinity,
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      buttonName = 'Clicked';
+                    });
+                  },
+                  child: Text(buttonName),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      buttonName = 'Click Me';
+                    });
+                  },
+                  child: Text(buttonName),
+                ),
+              ],
+            ),
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -33,11 +62,16 @@ class MyApp extends StatelessWidget {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                color: Colors.black38,
               ),
               label: 'Profile',
             ),
           ],
+          currentIndex: currentIndex,
+          onTap: (int index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
         ),
       ),
     );
